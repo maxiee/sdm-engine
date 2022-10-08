@@ -5,6 +5,7 @@ database = None
 collection_calendar = None
 
 def init_mongo():
+    print('init_mongo')
     global client
     global database
     global collection_calendar
