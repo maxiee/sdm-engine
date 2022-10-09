@@ -6,10 +6,8 @@ from sdm_engine.utils import time_utils
 
 
 def set_calendar_day(day: date, exchange: Exchange, working: bool):
-    return mongo.collection_calendar.insert_one(
-        {
-            "day": time_utils.date_to_datetime(day),
-            "exchange": exchange,
-            "working": working,
-        },
+    mongo.collection_calendar.update_one(
+        {"day": time_utils.date_to_datetime(day), "exchange": exchange},
+        {"$set": {"working": working}},
+        upsert=True,
     )
