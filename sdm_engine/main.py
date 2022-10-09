@@ -14,15 +14,19 @@ def hello():
     return "Hello, Stock Data Manager!"
 
 
+def ret_map(result):
+    return {"result": result}
+
+
 # Calendar related APIs
 @app.get("/calendar/{exchange}/{day}")
-def get_calendar_day(day: date) -> bool:
-    raise HTTPException(status_code=404, detail="record not found")
+def get_calendar_working_state(day: date, exchange: Exchange):
+    return ret_map(calendar.get_calendar_working_state(day, exchange))
 
 
 @app.post("/calendar/{exchange}/{day}")
-def set_calendar_day(day: date, exchange: Exchange, working: bool = Form()):
-    calendar.set_calendar_day(day, exchange, working)
+def set_calendar_working_state(day: date, exchange: Exchange, working: bool = Form()):
+    calendar.set_calendar_working_state(day, exchange, working)
 
 
 def start():
