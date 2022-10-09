@@ -38,9 +38,10 @@ def set_stock_data(
     day: date,
     key: str = Form(),
     value=Form(),
-    meta: Union[Dict, None]=Form(),
+    meta: Union[Dict, None] = Form(),
+    datasource: str = Form(),
 ):
-    stock.set_stock_data(exchange, instrument, day, key, value, meta)
+    stock.set_stock_data(exchange, instrument, day, key, value, meta, datasource)
 
 
 def start():

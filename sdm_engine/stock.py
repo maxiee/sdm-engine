@@ -10,10 +10,17 @@ FIELD_INSTRUMENT = "instrument"
 FIELD_KEY = "key"
 FIELD_VALUE = "value"
 FIELD_META = "meta"
+FIELD_DATA_SOURCE = "datasource"
 
 
 def set_stock_data(
-    exchange: Exchange, instrument: str, day: date, key: str, value, meta
+    exchange: Exchange,
+    instrument: str,
+    day: date,
+    key: str,
+    value,
+    meta,
+    datasource: str,
 ):
     """
     Update stock data for a particular day
@@ -34,6 +41,7 @@ def set_stock_data(
             FIELD_EXCHANGE: exchange,
             FIELD_INSTRUMENT: instrument,
             FIELD_KEY: key,
+            FIELD_DATA_SOURCE: datasource,
         },
         {"$set": {FIELD_VALUE: value, FIELD_META: meta}},
         upsert=True,
