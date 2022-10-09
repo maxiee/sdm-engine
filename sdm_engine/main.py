@@ -1,7 +1,7 @@
 import uvicorn
 from datetime import date
 from fastapi import FastAPI, Form
-from sdm_engine import calendar
+from sdm_engine import calendar, stock
 from sdm_engine.constants import Exchange
 from sdm_engine.mongo import init_mongo
 from typing import Union, Dict
@@ -40,7 +40,7 @@ def set_stock_data(
     value=Form(),
     meta: Union[Dict, None]=Form(),
 ):
-    pass
+    stock.set_stock_data(exchange, instrument, day, key, value, meta)
 
 
 def start():
